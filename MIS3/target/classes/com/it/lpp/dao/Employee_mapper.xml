@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace：命名空间，用于隔离sql，还有一个很重要的作用，后面会讲 -->
+<!--sql语句地方 -->
+<mapper namespace="com.it.lpp.dao.Employee_mapper">
+	<select id="selectByNumber" parameterType="java.lang.String" resultType="java.lang.Integer">select count(*) from employee_information where number = #{v}</select>
+	<select id="selectAll"  resultType="Employee">select * from employee_information</select>
+	<select id="selectById" parameterType="Integer" resultType="Employee">select * from employee_information where id = #{v}</select>
+	<select id="queryByMost" parameterType="Employee" resultType="Employee">
+		select * from employee_information
+		<where>
+			1 = 1
+			<if test="number!=null">and number  like '%${number}%'</if>
+			<if test="name!=null">and name like '%${name}%'</if>
+			<if test="idCard!=null">and idCard like '%${idCard}%'</if>
+			<if test="sex!=null">and sex = #{sex}</if>
+		</where>
+	</select>
+	
+	<delete id = "deleteById" parameterType="Integer" >delete from employee_information where id = #{v}</delete>
+	<update id="updateById" parameterType="Employee" >
+		update employee_information set number = #{number}, name = #{name}, idCard =#{idCard}
+		, sex =#{sex}, age =#{age}, bir =#{bir}, education = #{education}, nativePlace =
+		#{nativePlace}, department = #{department}, post =#{post} , grade =#{grade}, marriage=
+		#{marriage}, phone = #{phone}, addr =#{addr}, entryTime = #{entryTime} where id
+		= #{id}
+	</update>
+	<insert id ="insert" parameterType="Employee">
+		insert into employee_information (number,name,idCard,sex,age,bir,education, nativePlace,department,post,
+		grade,marriage,phone,addr, entryTime) values(#{number},#{name},#{idCard},#{sex},#{age},
+		#{bir},#{education},#{nativePlace},#{department},#{post},#{grade}, #{marriage},#{phone},#{addr},#{entryTime})
+	</insert>
+	
+</mapper>

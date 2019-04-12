@@ -1,0 +1,14 @@
+body{
+	width: 1920px;
+	height: 777px;
+	background: url(../img/bg.png)no-repeat;
+}
+#main{
+	width: 400px;
+	height: 200px;
+	margin-left: 900px;
+	margin-top: 236px;
+}
+#main-1{
+		margin-left: 762px;
+}
